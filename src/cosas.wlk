@@ -31,13 +31,13 @@ object paqueteDeLadrillos {
 	
 	method peso() { return pesoPorLadrillo * cantidadLadrillos }
 	
-	method nivelPeligrosidad() { return 2  }
+	method nivelPeligrosidad() { return 2 }
 	
 	method cantidadDeLadrillos(cantLadrillos) { cantidadLadrillos += cantLadrillos}
 	
 	method cantidadDeLadrillos() {return cantidadLadrillos}
 	 
-	method totalBultos() { return if (self.cantidadDeLadrillos() > 100) { 2 } else if(self.cantidadDeLadrillos() > 200) { 3 } else 1  }
+	method totalBultos() { return (self.cantidadDeLadrillos() /  100).roundUp() }
 	
 	method cambiar() { self.cantidadDeLadrillos(12)}
 }

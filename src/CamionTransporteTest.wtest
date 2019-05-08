@@ -52,5 +52,10 @@ describe "Tests de camion"{
 		assert.equals(940, contenedorPortuario.peso())
 		assert.equals(30, contenedorPortuario.mayorNivelDePeligrosidadDeCarga())
 	}
+	
+	test "cantidad de bultos por paquete de ladrillos" {
+		paqueteDeLadrillos.cantidadDeLadrillos(99)
+		assert.equals(1, paqueteDeLadrillos.totalBultos())
+	}
 }
 
