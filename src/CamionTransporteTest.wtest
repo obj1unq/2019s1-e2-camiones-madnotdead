@@ -165,5 +165,23 @@ describe "Tests de camion"{
 		contenedorPortuario.cargar(knightRider)
 		assert.that(contenedorPortuario.totalBultos() == 4)
 	}	
+	
+	//TODO: residuosRadioactivos
+	
+	test "residuos radioactivos con peso variante pero misma peligrosidad" {
+		residuosRadioactivos.peso(100)
+		assert.that(residuosRadioactivos.nivelPeligrosidad() == 200)
+		residuosRadioactivos.peso(1000)
+		assert.that(residuosRadioactivos.nivelPeligrosidad() == 200)
+	}
+	
+	//TODO: embalajeDeSeguridad
+	
+	test "embalaje de seguridad con residuos radiativos dismunuye la peligrosidad a la mitad" {
+		
+		residuosRadioactivos.peso(100)
+		embalajeDeSeguridad.envolver(residuosRadioactivos)
+		assert.that(embalajeDeSeguridad.nivelPeligrosidad() == residuosRadioactivos.nivelPeligrosidad().div(2))		
+	}
 }
 

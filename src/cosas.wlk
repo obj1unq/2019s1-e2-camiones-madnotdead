@@ -121,7 +121,7 @@ object embalajeDeSeguridad {
 
 	method peso() { return cosaAEnvolver.peso()  }
 
-	method nivelPeligrosidad() { return cosaAEnvolver.peligrosidad().div(2) }
+	method nivelPeligrosidad() { return cosaAEnvolver.nivelPeligrosidad().div(2) }
 	
 	method totalBultos() = 2
 	
