@@ -4,6 +4,7 @@ object camion {
 	const property cosas = []
 	
 	const pesoMaximo = 2500
+	const tara = 1000
 	
 	method cargar(unaCosa) {
 		unaCosa.cambiar()
@@ -15,12 +16,14 @@ object camion {
 	}
 	
 	method pesoTotal() {
-		return cosas.sum({ cosa => cosa.peso()})
+		return self.pesoDeCarga() + tara
 	}
 	
 	method excedidoDePeso() {
 		return self.pesoTotal() > pesoMaximo
 	}
+	
+	method pesoDeCarga() = cosas.sum({ cosa => cosa.peso()}) 
 	
 	method objetosPeligrosos(nivel) = cosas.filter( {cosa => cosa.nivelPeligrosidad() > nivel})
 	

@@ -11,7 +11,7 @@ describe "Tests de camion"{
 	test "camion descargar knighRider" {
 		camion.cargar(knightRider)
 		camion.descargar(knightRider)
-		assert.that(camion.pesoTotal() == 0)
+		assert.that(camion.pesoTotal() == 1000)
 	}
 	
 	test "paquete de ladrillos vacios" {
@@ -65,7 +65,7 @@ describe "Tests de camion"{
 		camion.cargar(knightRider)
 		arena.peso(400)
 		camion.cargar(arena)
-		assert.equals(2020, camion.pesoTotal())
+		assert.equals(3020, camion.pesoTotal())
 	}
 	
 	test "camion esta excedido de peso" {
