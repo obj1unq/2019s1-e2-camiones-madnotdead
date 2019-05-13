@@ -6,7 +6,7 @@ object knightRider {
 
 	method totalBultos() = 1
 
-	method cambiar() {}
+	method estaSiendoCargada() {}
 }
 
 object bumblebee {
@@ -21,7 +21,7 @@ object bumblebee {
 	
 	method totalBultos() = 2
 	
-	method cambiar() { self.transformar()}
+	method estaSiendoCargada() { transformadoEnAuto = false }
 }
 
 object paqueteDeLadrillos {
@@ -39,7 +39,7 @@ object paqueteDeLadrillos {
 	 
 	method totalBultos() { return (self.cantidadDeLadrillos() /  100).roundUp() }
 	
-	method cambiar() { self.cantidadDeLadrillos(12)}
+	method estaSiendoCargada() { self.cantidadDeLadrillos(12)}
 }
 
 object arena {
@@ -54,7 +54,7 @@ object arena {
 	
 	method totalBultos() = 1
 	
-	method cambiar() { self.peso(20)}
+	method estaSiendoCargada() { self.peso(20)}
 }
 
 object bateriaAntiaerea {
@@ -69,7 +69,7 @@ object bateriaAntiaerea {
 	
 	method totalBultos() { return if (estaCargada) { 2 } else { 1 }  }
 	
-	method cambiar() { self.cargar()}
+	method estaSiendoCargada() { estaCargada = true}
 }
 
 object contenedorPortuario {
@@ -95,7 +95,7 @@ object contenedorPortuario {
 	
 	method totalBultosCarga() = cosas.sum({cosa => cosa.totalBultos()})
 	
-	method cambiar() { cosas.forEach({ cosa => cosa.cambiar()})}
+	method estaSiendoCargada() { cosas.forEach({ cosa => cosa.estaSiendoCargada()})}
 }
 
 object residuosRadioactivos {
@@ -110,7 +110,7 @@ object residuosRadioactivos {
 	
 	method totalBultos() = 1
 	
-	method cambiar() { self.peso(15)}
+	method estaSiendoCargada() { self.peso(15)}
 }
 
 object embalajeDeSeguridad {
@@ -125,6 +125,6 @@ object embalajeDeSeguridad {
 	
 	method totalBultos() = 2
 	
-	method cambiar() {}
+	method estaSiendoCargada() {}
 	
 }

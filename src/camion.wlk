@@ -7,8 +7,8 @@ object camion {
 	const tara = 1000
 	
 	method cargar(unaCosa) {
-		unaCosa.cambiar()
 		cosas.add(unaCosa)
+		unaCosa.estaSiendoCargada()
 	}
 	
 	method descargar(unaCosa) {
