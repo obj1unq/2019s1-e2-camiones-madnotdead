@@ -54,8 +54,93 @@ describe "Tests de camion"{
 	}
 	
 	test "cantidad de bultos por paquete de ladrillos" {
-		paqueteDeLadrillos.cantidadDeLadrillos(99)
+		paqueteDeLadrillos.cantidadDeLadrillos(88)
 		assert.equals(1, paqueteDeLadrillos.totalBultos())
+	}
+	
+	test "camion peso total" {
+		
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		arena.peso(400)
+		camion.cargar(arena)
+		assert.equals(2020, camion.pesoTotal())
+	}
+	
+	test "camion esta excedido de peso" {
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		arena.peso(1000)
+		camion.cargar(arena)
+		assert.that(camion.excedidoDePeso())
+	}
+	
+	test "camion objetos nivel de peligrosidad mayor a 10" {
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		assert.equals(#{bumblebee,bateriaAntiaerea},camion.objetosPeligrosos(10).asSet())
+	}
+	
+	test "camion objetos mas peligrosos que bumblebee" {
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		assert.equals(#{bateriaAntiaerea},camion.objetosMasPeligrososQue(bumblebee).asSet())	
+	}
+	
+	test "camion puede circular en ruta" {
+		arena.peso(1000)
+		camion.cargar(arena)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		assert.that(camion.puedeCircularEnRuta(30))
+	}
+	
+	test "camion no puede circular en ruta" {
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		assert.notThat(camion.puedeCircularEnRuta(30))
+	}
+	
+//	test "camion tiene cosas que pensas entre 100 y 300" {
+//		camion.cargar(bateriaAntiaerea)
+//		camion.cargar(bumblebee)
+//		camion.cargar(knightRider)
+//		assert.notThat(camion.puedeCircularEnRuta(30))
+//	}
+
+	test "la cosa mas pesada del camion es bumblebee" {
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		assert.equals(bumblebee,camion.cosaMasPesada())
+	}
+	
+	test "la cantidad de bultos total del camion es 5" {
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		assert.equals(5,camion.totalBultos())
+	}
+	
+	test "listado del peso de las cosas del camion" {
+		camion.cargar(bateriaAntiaerea)
+		camion.cargar(bumblebee)
+		camion.cargar(knightRider)
+		//assert.equals(#{bateriaAntiaerea.peso(),bumblebee.peso(),knightRider.peso()},camion.pesos().asSet())
+		assert.equals(#{300,500,800},camion.pesos().asSet())
+	}
+	
+	test "tiene algo que pesa entre 400 y 600" {
+		camion.cargar(bateriaAntiaerea)//300
+		camion.cargar(bumblebee)//800
+		camion.cargar(knightRider)//500
+		//assert.equals(#{bateriaAntiaerea.peso(),bumblebee.peso(),knightRider.peso()},camion.pesos().asSet())
+		assert.that(camion.tieneAlgoQuePesaEntre(400,600))
 	}
 }
 

@@ -22,13 +22,13 @@ object camion {
 		return self.pesoTotal() > pesoMaximo
 	}
 	
-	method objetosPeligrosos(nivel) = cosas.filter( {cosa => cosa.peligrosidad() > nivel})
+	method objetosPeligrosos(nivel) = cosas.filter( {cosa => cosa.nivelPeligrosidad() > nivel})
 	
-	method objetosMasPeligrososQue(cosa) = self.objetosPeligrosos(cosa.peligrosidad())	
+	method objetosMasPeligrososQue(cosa) = self.objetosPeligrosos(cosa.nivelPeligrosidad())	
 	
 	method puedeCircularEnRuta(nivelMaximoPeligrosidad) = self.objetosPeligrosos(nivelMaximoPeligrosidad).size() == 0
 	
-	method tieneAlgoQuePesaEntre(min, max) = cosas.between({cosa => cosa.peso().between(min, max)})
+	method tieneAlgoQuePesaEntre(min, max) = cosas.filter({cosa => cosa.peso().between(min, max)}).size() > 0
 	
 	method cosaMasPesada() = cosas.max({cosa => cosa.peso()})
 	
