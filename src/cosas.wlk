@@ -24,9 +24,9 @@ object bumblebee {
 	method estaSiendoCargada() { transformadoEnAuto = false }
 }
 
-object paqueteDeLadrillos {
+class PaqueteDeLadrillos {
 	
-	var cantidadLadrillos = 0
+	var property cantidadLadrillos = 0
 	var pesoPorLadrillo = 2
 	
 	method peso() { return pesoPorLadrillo * cantidadLadrillos }

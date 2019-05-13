@@ -15,12 +15,12 @@ describe "Tests de camion"{
 	}
 	
 	test "paquete de ladrillos vacios" {
-		assert.equals(0, paqueteDeLadrillos.peso())
+		assert.equals(0, new PaqueteDeLadrillos().peso())
 	}
 	
 	test "paquete de ladrillos de 20 kg" {
-		paqueteDeLadrillos.cantidadDeLadrillos(10)
-		assert.that(paqueteDeLadrillos.peso() == 20)
+		var paquete  = new PaqueteDeLadrillos(cantidadLadrillos = 10)
+		assert.that(paquete.peso() == 20)
 	}
 	
 	test "arena a granel peligrosidad invariable" {
@@ -44,8 +44,9 @@ describe "Tests de camion"{
 	}
 	
 	test "contenedor portuario con carga de paquete de ladrillos y arena" {
-		paqueteDeLadrillos.cantidadDeLadrillos(20) //40 kg - peligrosidad 2
-		contenedorPortuario.cargar(paqueteDeLadrillos)//100kg
+		
+		var paqueteDeLadrillo = new PaqueteDeLadrillos(cantidadLadrillos = 20)//40 kg - peligrosidad 2
+		contenedorPortuario.cargar(paqueteDeLadrillo)//100kg
 		bumblebee.transformar() //800 kg - peligrosidad 30
 		contenedorPortuario.cargar(bumblebee)
 		
@@ -54,8 +55,8 @@ describe "Tests de camion"{
 	}
 	
 	test "cantidad de bultos por paquete de ladrillos" {
-		paqueteDeLadrillos.cantidadDeLadrillos(88)
-		assert.equals(1, paqueteDeLadrillos.totalBultos())
+		var paqueteDeLadrillo = new PaqueteDeLadrillos(cantidadLadrillos = 88)
+		assert.equals(1, paqueteDeLadrillo.totalBultos())
 	}
 	
 	test "camion peso total" {
@@ -183,5 +184,8 @@ describe "Tests de camion"{
 		embalajeDeSeguridad.envolver(residuosRadioactivos)
 		assert.that(embalajeDeSeguridad.nivelPeligrosidad() == residuosRadioactivos.nivelPeligrosidad().div(2))		
 	}
+	
+	
+	//TODO : camion y paquete de ladrillos pasa a ser clases.
 }
 
