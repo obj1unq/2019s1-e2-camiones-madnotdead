@@ -135,12 +135,35 @@ describe "Tests de camion"{
 		assert.equals(#{300,500,800},camion.pesos().asSet())
 	}
 	
-	test "tiene algo que pesa entre 400 y 600" {
+	test "el camion tiene algo que pesa entre 400 y 600" {
 		camion.cargar(bateriaAntiaerea)//300
 		camion.cargar(bumblebee)//800
 		camion.cargar(knightRider)//500
 		//assert.equals(#{bateriaAntiaerea.peso(),bumblebee.peso(),knightRider.peso()},camion.pesos().asSet())
 		assert.that(camion.tieneAlgoQuePesaEntre(400,600))
 	}
+	
+	test "contenedor portuario esta vacio y su peso es de 100" {
+		assert.that(contenedorPortuario.estaVacio() && contenedorPortuario.peso() == 100)
+	}
+	
+	test "contenedor portuario esta cargado con bumblebee y su peso es de 900" {
+		contenedorPortuario.cargar(bumblebee)
+		assert.that(not contenedorPortuario.estaVacio() && contenedorPortuario.peso() == 900)
+	}
+	
+	test "contenedor portuario con nivel de peligrosidad de 30" {
+		bumblebee.transformar()
+		contenedorPortuario.cargar(bumblebee)
+		contenedorPortuario.cargar(knightRider)
+		assert.that(contenedorPortuario.nivelPeligrosidad() == 30)
+	}
+	
+	test "contenedor portuario con total de bultos igual a 4" {
+		bumblebee.transformar()
+		contenedorPortuario.cargar(bumblebee)
+		contenedorPortuario.cargar(knightRider)
+		assert.that(contenedorPortuario.totalBultos() == 4)
+	}	
 }
 

@@ -91,7 +91,7 @@ object contenedorPortuario {
 	
 	method mayorNivelDePeligrosidadDeCarga() = cosas.map( {cosa => cosa.nivelPeligrosidad()} ).max()
 	
-	method totalBultos() { return if (self.estaVacio()) { 1 } else { self.totalBultosCarga() } }
+	method totalBultos() { return if (self.estaVacio()) { 1 } else { self.totalBultosCarga()  + 1 } }
 	
 	method totalBultosCarga() = cosas.sum({cosa => cosa.totalBultos()})
 	
